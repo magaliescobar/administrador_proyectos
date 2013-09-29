@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Cronometro</title>
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/estilos.css">
+	
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="{{ STATIC_URL }}js/Cronometro.js"></script>
+	</head>
+	<body>
+		<div id="#cron">
+			<div id="time">
+				<span id="hours"></span>:
+				<span id="minutes"></span>:
+				<span id="seconds"></span>
+			</div>
+			<button id="btn_play">Play</button>
+			<button id="btn_pause">Pause</button>
+			<button id="btn_stop">Stop</button>
+
+			<textarea id="desc"></textarea>
+			<button id="btn_send">Enviar</button>
+			<button id="btn_go_back">Cancelar</button>
+			<input id="idTarea" type="hidden" value="{{ id_tarea }}">
+		</div>
+	</body>
+</html>
+
