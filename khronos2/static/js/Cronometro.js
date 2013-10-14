@@ -44,9 +44,6 @@ var Cron = {
 		this.$btn_send = $('#btn_send');
 		this.$btn_send.hide();
 
-		this.$btn_go_back = $('#btn_go_back');
-		this.$btn_go_back.hide();
-
 		this.idTarea = $("#idTarea").val();
 
 		this.bindUIActions();
@@ -56,10 +53,6 @@ var Cron = {
 		this.$btn_play.click(this.play);
 		this.$btn_pause.click(this.pause);
 		this.$btn_stop.click(this.stop);
-
-		Cron.$btn_go_back.click(function() {
-			Cron.hideForm();
-		});
 
 
 		Cron.$btn_send.click(function() {
@@ -78,16 +71,22 @@ var Cron = {
 			Cron.enableEle(Cron.$btn_pause);
 
 			Cron.hideForm();
+			Cron.clearForm();
+
+			Cron.disableEle(Cron.$btn_pause);
+			Cron.disableEle(Cron.$btn_stop);
 		});	
 	},
 
 	hideForm: function() {
 		Cron.hideEle(Cron.$desc);
 		Cron.hideEle(Cron.$btn_send);
-		Cron.hideEle(Cron.$btn_go_back);
 
 	},
 
+	clearForm: function() {
+		Cron.$desc.val('');
+	},
 
 	play: function() {
 
@@ -137,7 +136,9 @@ var Cron = {
 
 		Cron.showEle(Cron.$desc);
 		Cron.showEle(Cron.$btn_send);
-		Cron.showEle(Cron.$btn_go_back);
+
+		Cron.disableEle(Cron.$btn_pause);
+		Cron.disableEle(Cron.$btn_play);
 		
 	},
 
