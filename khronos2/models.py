@@ -84,12 +84,13 @@ class Tareas(models.Model):
 	
 
 class Intervalos(models.Model):
+	fecha = models.DateField(auto_now_add=True)
 	tiempo = models.TimeField()
-	descripcion = models.TextField()
+	descripcion = models.TextField(null=True, blank=True)
 	tarea = models.ForeignKey(Tareas)
 
 	def __unicode__(self):
-		return "%s - %s - %s" %( self.tiempo, self.descripcion, self.tarea)
+		return "%s - %s - %s - %s" % (self.fecha, self.tiempo, self.descripcion, self.tarea)
 
 	class Meta():
 		verbose_name_plural="Intervalos"
