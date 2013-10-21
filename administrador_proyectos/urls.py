@@ -5,7 +5,7 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^cron/', include('khronos2.urls')),
+    url(r'^', include('khronos2.urls')),
 
 
     # Uncomment the admin/doc line below to enable admin documentation:

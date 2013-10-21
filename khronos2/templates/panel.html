@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Seleccion</title>
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="{{ STATIC_URL }}js/Cronometro.js"></script>
+	<script src="{{ STATIC_URL }}js/panel.js"></script>
+</head>
+<body>
+	<div id="container">
+		
+		<div id="projects_wrapper">
+			<button>Add Project</button>
+
+			<div id="projects_container">
+
+				{% for p in proyectos %}
+					<div id="{{ p.id }}">{{ p }}</div>
+				{% endfor %}
+				
+			</div>
+		</div>
+		
+		<div id="tasks_wrapper">
+			<button>Add Task</button>
+
+			<div id="tasks_container">
+
+			</div>	
+		</div>
+
+		<div id="cron">
+			
+			<div id="time">
+				<span id="hours"></span>:
+				<span id="minutes"></span>:
+				<span id="seconds"></span>
+			</div>
+			<button id="btn_play">Play</button>
+			<button id="btn_pause">Pause</button>
+			<button id="btn_stop">Stop</button>
+
+			<textarea id="desc"></textarea>
+			<button id="btn_send">Enviar</button>
+			<input id="idTarea" type="hidden">
+			
+		</div>
+
+	</div>
+</body>
+</html>

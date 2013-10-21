@@ -44,7 +44,7 @@ var Cron = {
 		this.$btn_send = $('#btn_send');
 		this.$btn_send.hide();
 
-		this.idTarea = $("#idTarea").val();
+		this.idTarea = $("#idTarea");
 
 		this.bindUIActions();
 	},
@@ -56,12 +56,13 @@ var Cron = {
 
 
 		Cron.$btn_send.click(function() {
-			$.post("/cron/save_interval/", {
+
+			$.post("/save_interval/", {
 				hours: Cron.hours,
 				minutes: Cron.minutes,
 				seconds: Cron.seconds,
 				comments: Cron.$desc.val(),
-				idTarea : Cron.idTarea,
+				idTarea : Cron.idTarea.val(),
 			});
 
 			clearInterval(Cron.cron);

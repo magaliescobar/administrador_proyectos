@@ -5,19 +5,14 @@ from django.core import serializers
 from django.core.urlresolvers import reverse
 from django.views.decorators.csrf import csrf_exempt
 
-# vistas posta
+# vistas
 
-
-def cronometro (request, id_tarea):
-	return render(request,"cronometro.html",
+def panel(request):
+	return render(request,"panel.html",
 		{
-			"id_tarea" : id_tarea
+			"proyectos": Proyectos.objects.all()
 		}
 	)
-
-
-def seleccion(request):
-	return render(request,"seleccion.html",{"proyectos": Proyectos.objects.all()})
 
 # end vistas posta
 
@@ -25,6 +20,8 @@ def seleccion(request):
 
 @csrf_exempt
 def save_interval(request):
+
+	print request.POST
 
 	hora = request.POST['hours']
 	minutos = request.POST['minutes']
