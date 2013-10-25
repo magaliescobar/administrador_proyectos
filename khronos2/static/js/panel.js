@@ -38,6 +38,8 @@ var panel = {
 				panel.$projectSelectedID = $(this).attr("id");
 				panel.$projectSelected = $(this);
 				var id_proyecto = $(this).attr("id");
+
+				formTask.idProyecto = id_proyecto; // para saber de que proyecto estoy hablando.
 				
 				panel.getTasks(id_proyecto);
 			}
@@ -50,7 +52,7 @@ var panel = {
 			
 			for(var i in tareas) {
 				
-				var div = $("<div>", {
+				$("<div>", {
 					id: tareas[i].pk,
 					text: tareas[i].fields.nombre,
 				})
@@ -58,9 +60,8 @@ var panel = {
 					// display timer
 					panel.$cron.show();
 					Cron.idTarea = tareas[i].pk;
-				});
-
-				div.appendTo(panel.$tasks_container);
+				})
+				.appendTo(panel.$tasks_container);
 
 			}
 		});

@@ -8,6 +8,7 @@
 	<script src="{{ STATIC_URL }}js/Cronometro.js"></script>
 	<script src="{{ STATIC_URL }}js/panel.js"></script>
 	<script src="{{ STATIC_URL }}js/formProject.js"></script>
+	<script src="{{ STATIC_URL }}js/formTask.js"></script>
 </head>
 <body>
 	<div id="container">
@@ -18,16 +19,14 @@
 
 			<div id="project_form_wrapper">
 				
-					<input id="nombre" type="text" name="nombre">
-					<textarea id="descripcion" name="descripcion"></textarea>
-					<input id="fecha_inicio" type="date" name="fecha_inicio">
-					<input id="fecha_fin" type="date" name="fecha_fin">
-					<select id="estado" name="estado">
+					<input id="nombre" type="text">
+					<textarea id="descripcion"></textarea>
+					<input id="fecha_inicio" type="date">
+					<input id="fecha_fin" type="date">
+					<select id="estado">
 						<option value="no_iniciada">No iniciada</option>
 						<option value="en_proceso">En proceso</option>
 						<option value="suspendida">Suspendida</option>
-						<option value="para_testear">Para Testear</option>
-						<option value="para_retome">Para Retome</option>
 						<option value="finalizada">Finalizada</option>
 					</select>
 					<input id="btn_add_project" type="submit" value="Add">
@@ -37,14 +36,35 @@
 			<div id="projects_container">
 
 				{% for p in proyectos %}
-					<div id="{{ p.id }}">{{ p }}</div>
+					<div id="{{ p.id }}">{{ p.nombre }}</div>
 				{% endfor %}
 				
 			</div>
 		</div>
 		
 		<div id="tasks_wrapper">
-			<button>Add Task</button>
+			<button id="btn_show_task_form">Add Task</button>
+			<button id="btn_close_task_form">Close</button>
+
+			<div id="task_form_wrapper">
+				
+				<input id="task_nombre" type="text">
+				<textarea id="task_descripcion"></textarea>
+				<select id="task_responsable"></select>
+				<input id="task_fecha_inicio" type="date">
+				<input id="task_fecha_fin" type="date">
+				<input id="task_tiempo_estimado" type="text">
+				<select id="task_estado">
+					<option value="no_iniciada">No iniciada</option>
+					<option value="en_proceso">En proceso</option>
+					<option value="suspendida">Suspendida</option>
+					<option value="para_testear">Para Testear</option>
+					<option value="para_retome">Para Retome</option>
+					<option value="finalizada">Finalizada</option>
+				</select>
+				<input id="btn_add_task" type="submit" value="Add">
+
+			</div>
 
 			<div id="tasks_container">
 
