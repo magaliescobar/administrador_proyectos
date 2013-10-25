@@ -36,20 +36,7 @@ class RecursosHumanos(models.Model):
 		verbose_name_plural="Recursos Humanos"
 
 
-class Clientes(models.Model):
-	nombre = models.CharField(max_length=50)
-	email = models.EmailField()
-	telefono = models.IntegerField()
-
-	def __unicode__(self):
-		return "%s - %s - %s" %(self.nombre, self.email, self.telefono)
-
-	class Meta():
-		verbose_name_plural="Clientes"
-
-
 class Proyectos(models.Model):
-	cliente = models.ForeignKey(Clientes)
 	nombre = models.CharField(max_length=30)
 	descripcion = models.TextField()
 	fecha_inicio = models.DateField()

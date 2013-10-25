@@ -7,12 +7,32 @@
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="{{ STATIC_URL }}js/Cronometro.js"></script>
 	<script src="{{ STATIC_URL }}js/panel.js"></script>
+	<script src="{{ STATIC_URL }}js/formProject.js"></script>
 </head>
 <body>
 	<div id="container">
 		
 		<div id="projects_wrapper">
-			<button>Add Project</button>
+			<button id="btn_show_project_form">Add Project</button>
+			<button id="btn_close_project_form">Close</button>
+
+			<div id="project_form_wrapper">
+				
+					<input id="nombre" type="text" name="nombre">
+					<textarea id="descripcion" name="descripcion"></textarea>
+					<input id="fecha_inicio" type="date" name="fecha_inicio">
+					<input id="fecha_fin" type="date" name="fecha_fin">
+					<select id="estado" name="estado">
+						<option value="no_iniciada">No iniciada</option>
+						<option value="en_proceso">En proceso</option>
+						<option value="suspendida">Suspendida</option>
+						<option value="para_testear">Para Testear</option>
+						<option value="para_retome">Para Retome</option>
+						<option value="finalizada">Finalizada</option>
+					</select>
+					<input id="btn_add_project" type="submit" value="Add">
+
+			</div>
 
 			<div id="projects_container">
 
@@ -44,7 +64,6 @@
 
 			<textarea id="desc"></textarea>
 			<button id="btn_send">Enviar</button>
-			<input id="idTarea" type="hidden">
 			
 		</div>
 

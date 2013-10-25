@@ -2,6 +2,7 @@ from django.http import HttpResponse, HttpResponseRedirect as redirect
 from django.shortcuts import render
 from models import Intervalos, Proyectos, Tareas
 from django.core import serializers
+from django.utils import simplejson
 from django.core.urlresolvers import reverse
 from django.views.decorators.csrf import csrf_exempt
 
@@ -21,8 +22,6 @@ def panel(request):
 @csrf_exempt
 def save_interval(request):
 
-	print request.POST
-
 	hora = request.POST['hours']
 	minutos = request.POST['minutes']
 	segundos = request.POST['seconds']
@@ -38,6 +37,30 @@ def save_interval(request):
 
 	return HttpResponse("Intervalo Guardado")
 
+@csrf_exempt
+def save_proyecto(request):
+
+	nombre = request.POST['nombre']
+	descripcion = request.POST['descripcion']
+	fecha_inicio = request.POST['fecha_inicio']
+	fecha_fin = request.POST['fecha_fin']
+	estado = request.POST['estado']
+
+	nuevo_proyecto = Proyectos(
+		nombre=nombre,
+		descripcion=descripcion,
+		fecha_inicio=fecha_inicio,
+		fecha_fin=fecha_fin,
+		estado=estado
+	)
+	nuevo_proyecto.save()
+
+	return_nuevo_proyecto = {
+		"id" : nuevo_proyecto.id,
+		"nombre" : nombre,
+	}
+
+	return HttpResponse(simplejson.dumps(return_nuevo_proyecto))
 
 def proyectos(request):
 	proyectos = serializers.serialize("json" , Proyectos.objects.all())

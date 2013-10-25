@@ -57,7 +57,7 @@ var panel = {
 				.click(function() {
 					// display timer
 					panel.$cron.show();
-					$("#idTarea").val(tareas[i].pk);
+					Cron.idTarea = tareas[i].pk;
 				});
 
 				div.appendTo(panel.$tasks_container);

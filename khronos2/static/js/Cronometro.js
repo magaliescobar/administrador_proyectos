@@ -44,7 +44,7 @@ var Cron = {
 		this.$btn_send = $('#btn_send');
 		this.$btn_send.hide();
 
-		this.idTarea = $("#idTarea");
+		this.idTarea = null;
 
 		this.bindUIActions();
 	},
@@ -62,20 +62,23 @@ var Cron = {
 				minutes: Cron.minutes,
 				seconds: Cron.seconds,
 				comments: Cron.$desc.val(),
-				idTarea : Cron.idTarea.val(),
+				idTarea : Cron.idTarea,
+			}, function(msj) {
+				console.log(msj);
+				
+				clearInterval(Cron.cron);
+				Cron.cleaTimer();
+
+				Cron.enableEle(Cron.$btn_play);
+				Cron.enableEle(Cron.$btn_pause);
+
+				Cron.hideForm();
+				Cron.clearForm();
+
+				Cron.disableEle(Cron.$btn_pause);
+				Cron.disableEle(Cron.$btn_stop);
 			});
 
-			clearInterval(Cron.cron);
-			Cron.cleaTimer();
-
-			Cron.enableEle(Cron.$btn_play);
-			Cron.enableEle(Cron.$btn_pause);
-
-			Cron.hideForm();
-			Cron.clearForm();
-
-			Cron.disableEle(Cron.$btn_pause);
-			Cron.disableEle(Cron.$btn_stop);
 		});	
 	},
 
