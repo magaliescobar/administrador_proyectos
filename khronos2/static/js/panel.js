@@ -27,24 +27,7 @@ var panel = {
 	},
 
 	bindUIActions: function() {
-		panel.$projects.click(function() {
-
-			panel.$cron.hide();
-			panel.$tasks_wrapper.show();
-			
-			if (panel.$projectSelectedID !== $(this).attr("id")) {
-			
-				panel.$tasks_container.empty();
-				panel.$projectSelectedID = $(this).attr("id");
-				panel.$projectSelected = $(this);
-				var id_proyecto = $(this).attr("id");
-
-				formTask.idProyecto = id_proyecto; // para saber de que proyecto estoy hablando.
-				
-				panel.getTasks(id_proyecto);
-			}
-
-		});
+		panel.$projects.click(panel.projectClicked);
 	},
 
 	getTasks: function(id_proyecto) {
@@ -65,5 +48,22 @@ var panel = {
 
 			}
 		});
+	},
+
+	projectClicked: function() {
+		panel.$cron.hide();
+		panel.$tasks_wrapper.show();
+		
+		if (panel.$projectSelectedID !== $(this).attr("id")) {
+		
+			panel.$tasks_container.empty();
+			panel.$projectSelectedID = $(this).attr("id");
+			panel.$projectSelected = $(this);
+			var id_proyecto = $(this).attr("id");
+
+			formTask.idProyecto = id_proyecto; // para saber de que proyecto estoy hablando.
+			
+			panel.getTasks(id_proyecto);
+		}
 	}
 }

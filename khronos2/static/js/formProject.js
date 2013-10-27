@@ -79,9 +79,11 @@ var formProject = {
 				id: projectAdded.id,
 				text: projectAdded.nombre
 			})
+			.click(panel.projectClicked)
 			.appendTo(formProject.$projectsContainer);
 
 			formProject.clear();
+			formProject.$projectFormWrapper.hide();
 		}, "json");
 	},
 

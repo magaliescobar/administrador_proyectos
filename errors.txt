@@ -1,0 +1,1 @@
+"listo" 1. a un proyecto agregado no le appenda el evento "click".
