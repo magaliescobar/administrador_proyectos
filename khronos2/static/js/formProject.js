@@ -21,7 +21,6 @@ var formProject = {
 		this.$nombre = $('#nombre');
 		this.$descripcion = $('#descripcion');
 		this.$fechaInicio = $('#fecha_inicio');
-		this.$fechaFin = $('#fecha_fin');
 		this.$estado = $('#estado');
 
 		this.$btnShowProjectForm = $('#btn_show_project_form');
@@ -31,13 +30,13 @@ var formProject = {
 
 	bindUIActions : function() {
 		formProject.$btnShowProjectForm.click(function() {
-			formProject.$projectFormWrapper.show();
-			formProject.$btnCloseProjectForm.show();
+			formProject.$projectFormWrapper.fadeIn();
+			formProject.$btnCloseProjectForm.fadeIn();
 		});
 
 		formProject.$btnCloseProjectForm.click(function() {
-			formProject.$projectFormWrapper.hide();
-			formProject.$btnCloseProjectForm.hide();
+			formProject.$projectFormWrapper.fadeOut();
+			formProject.$btnCloseProjectForm.fadeOut();
 			formProject.clear();
 		});
 
@@ -55,8 +54,7 @@ var formProject = {
 
 		if (!formProject.$nombre.val()
 		|| !formProject.$descripcion.val()
-		|| !formProject.$fechaInicio.val()
-		|| !formProject.$fechaFin.val()) {
+		|| !formProject.$fechaInicio.val()) {
 			alert("completa todo wachin o cerralo.");
 			return false;
 		} else {
@@ -70,20 +68,19 @@ var formProject = {
 			nombre : formProject.$nombre.val(),
 			descripcion : formProject.$descripcion.val(),
 			fecha_inicio : formProject.$fechaInicio.val(),
-			fecha_fin : formProject.$fechaFin.val(),
 			estado : formProject.$estado.val(),
 		},
 		function(projectAdded) {
 
 			$('<div>', {
 				id: projectAdded.id,
-				text: projectAdded.nombre
+				text: projectAdded.nombre.capitalize()
 			})
 			.click(panel.projectClicked)
 			.appendTo(formProject.$projectsContainer);
 
 			formProject.clear();
-			formProject.$projectFormWrapper.hide();
+			formProject.$projectFormWrapper.fadeOut();
 		}, "json");
 	},
 
@@ -91,6 +88,5 @@ var formProject = {
 		formProject.$nombre.val('');
 		formProject.$descripcion.val('');
 		formProject.$fechaInicio.val('');
-		formProject.$fechaFin.val('');
 	}
 };

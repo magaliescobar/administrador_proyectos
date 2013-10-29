@@ -40,7 +40,7 @@ class Proyectos(models.Model):
 	nombre = models.CharField(max_length=30)
 	descripcion = models.TextField()
 	fecha_inicio = models.DateField()
-	fecha_fin = models.DateField()
+	fecha_fin = models.DateField(null=True, blank=True)
 	tiempo_total = models.TimeField(null=True, blank=True)
 	estado = models.CharField(max_length=11, choices=estado_proyecto)
 
@@ -57,7 +57,7 @@ class Tareas(models.Model):
 	nombre = models.CharField(max_length=30)
 	descripcion = models.TextField()
 	fecha_inicio = models.DateField()
-	fecha_fin = models.DateField()
+	fecha_fin = models.DateField(null=True, blank=True)
 	tiempo_estimado = models.IntegerField() 
 	estado = models.CharField(max_length=11, choices=estado_tareas)
 	tiempo_total= models.TimeField(null=True, blank=True)

@@ -6,3 +6,8 @@
 .btn_close {
 	float: right;
 }
+
+.APS-active-tab {
+	border-bottom: solid 2px grey;
+	color: white;
+}

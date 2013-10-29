@@ -16,7 +16,6 @@ var formTask = {
 		this.$descripcion = $('#task_descripcion');
 		this.$responsable = $('#task_responsable');
 		this.$fechaInicio = $('#task_fecha_inicio');
-		this.$fechaFin = $('#task_fecha_fin');
 		this.$tiempoEstimado = $('#task_tiempo_estimado');
 		this.$estado = $('#task_estado');
 
@@ -30,7 +29,7 @@ var formTask = {
 	},
 
 	bindUIActions: function() {
-		formTask.$btnShowPTaskForm.click(formTask.show)
+		formTask.$btnShowPTaskForm.click(formTask.fadeIn)
 		formTask.$btnCloseTaskForm.click(formTask.close);
 		formTask.$btnAddTask.click(function() {
 			if(formTask.isValid()) {
@@ -54,24 +53,23 @@ var formTask = {
 		})
 	},
 
-	show: function() {
-		formTask.$taskFormWrapper.show();
-		formTask.$btnCloseTaskForm.show();
+	fadeIn: function() {
+		formTask.$taskFormWrapper.fadeIn();
+		formTask.$btnCloseTaskForm.fadeIn();
 	},
 
 	clear: function() {
 		formTask.$nombre.val('');
 		formTask.$descripcion.val('');
 		formTask.$fechaInicio.val('');
-		formTask.$fechaFin.val('');
 		formTask.$tiempoEstimado.val('')
 	},
 
 	close: function() {
-		formTask.$taskFormWrapper.hide();
+		formTask.$taskFormWrapper.fadeOut();
 		formTask.clear();
 
-		formTask.$btnCloseTaskForm.hide();
+		formTask.$btnCloseTaskForm.fadeOut();
 	},
 
 	isValid: function() {
@@ -80,7 +78,6 @@ var formTask = {
 		if (!formTask.$nombre.val()
 		|| !formTask.$descripcion.val()
 		|| !formTask.$fechaInicio.val()
-		|| !formTask.$fechaFin.val()
 		|| !formTask.$tiempoEstimado.val()) {
 			alert("completa todo wachin o cerralo.");
 			return false;
@@ -96,7 +93,6 @@ var formTask = {
 			descripcion : formTask.$descripcion.val(),
 			responsable : formTask.$responsable.val(),
 			fecha_inicio : formTask.$fechaInicio.val(),
-			fecha_fin : formTask.$fechaFin.val(),
 			tiempo_estimado : formTask.$tiempoEstimado.val(),
 			estado : formTask.$estado.val(),
 		},
@@ -106,9 +102,14 @@ var formTask = {
 				id: taskAdded.id,
 				text: taskAdded.nombre
 			})
+			.click(function() {
+				panel.$cron.fadeIn();
+				Cron.idTarea = taskAdded.id;
+			})
 			.appendTo(formTask.$tasksContainer);
 
 			formTask.clear();
+			formTask.close();
 		}, "json");
 	},
 

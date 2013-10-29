@@ -11,7 +11,15 @@ from django.views.decorators.csrf import csrf_exempt
 def panel(request):
 	return render(request,"panel.html",
 		{
-			"proyectos": Proyectos.objects.all()
+			"proyectos": Proyectos.objects.all(),
+			"tab_selected" : "panel",
+		}
+	)
+
+def about(request):
+	return render(request, "about.html",
+		{
+			"tab_selected" : "about",
 		}
 	)
 
@@ -43,14 +51,12 @@ def save_proyecto(request):
 	nombre = request.POST['nombre']
 	descripcion = request.POST['descripcion']
 	fecha_inicio = request.POST['fecha_inicio']
-	fecha_fin = request.POST['fecha_fin']
 	estado = request.POST['estado']
 
 	nuevo_proyecto = Proyectos(
 		nombre=nombre,
 		descripcion=descripcion,
 		fecha_inicio=fecha_inicio,
-		fecha_fin=fecha_fin,
 		estado=estado
 	)
 	nuevo_proyecto.save()
@@ -70,7 +76,6 @@ def save_tarea(request):
 	descripcion = request.POST['descripcion']
 	responsable_id = request.POST['responsable']
 	fecha_inicio = request.POST['fecha_inicio']
-	fecha_fin = request.POST['fecha_fin']
 	tiempo_estimado = request.POST['tiempo_estimado']
 	estado = request.POST['estado']
 
@@ -83,7 +88,6 @@ def save_tarea(request):
 		descripcion=descripcion,
 		responsable=rrhh,
 		fecha_inicio=fecha_inicio,
-		fecha_fin=fecha_fin,
 		tiempo_estimado=tiempo_estimado,
 		estado=estado
 	)

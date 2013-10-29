@@ -2,6 +2,7 @@ from django.conf.urls import patterns, include, url
 
 urlpatterns = patterns('khronos2.views',
     url(r'^$', 'panel', name='panel'),
+    url(r'^about/$', 'about', name='about'),
     
     url(r'^save_interval/$', 'save_interval', name='save_interval'),
     url(r'^save_proyecto/$', 'save_proyecto', name='save_proyecto'),

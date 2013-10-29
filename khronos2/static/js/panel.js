@@ -2,6 +2,16 @@ $(function() {
 	panel.init();
 });
 
+String.prototype.capitalize = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+}
+
+function clone(object) {
+	function F() {}
+	F.prototype = object;
+	return new F;
+}
+
 var panel = {
 	config: {
 
@@ -32,7 +42,7 @@ var panel = {
 
 	getTasks: function(id_proyecto) {
 		$.getJSON("/tareas/" + id_proyecto, function(tareas) {
-			
+
 			for(var i in tareas) {
 				
 				$("<div>", {
@@ -41,18 +51,18 @@ var panel = {
 				})
 				.click(function() {
 					// display timer
-					panel.$cron.show();
+					panel.$cron.fadeIn();
 					Cron.idTarea = tareas[i].pk;
 				})
 				.appendTo(panel.$tasks_container);
-
 			}
+			
 		});
 	},
 
 	projectClicked: function() {
-		panel.$cron.hide();
-		panel.$tasks_wrapper.show();
+		panel.$cron.fadeOut();
+		panel.$tasks_wrapper.fadeIn();
 		
 		if (panel.$projectSelectedID !== $(this).attr("id")) {
 		
