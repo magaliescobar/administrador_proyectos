@@ -16,7 +16,7 @@
 				<button id="btn_show_project_form" class="btn btn-block btn-success">Add Project</button>
 
 				<div id="project_form_wrapper">
-					<button id="btn_close_project_form" class="btn_close btn-danger">&times;</button>
+					<span id="btn_close_project_form" class="glyphicon glyphicon-remove pull-right"></span>
 					
 					<div class="well">
 						<input id="nombre" class="form-control" type="text" 
@@ -44,11 +44,11 @@
 					{% for p in proyectos %}
 						<div id="{{ p.id }}">{{ p.nombre|capfirst }}</div>
 					{% empty %}
-						<div>
-							<h4>
-								No hay proyectos.
-							</h4>
-						</div>
+						
+						<h4>
+							No hay proyectos.
+						</h4>
+						
 					{% endfor %}
 					
 				</div>
@@ -59,7 +59,7 @@
 				<button id="btn_show_task_form" class="btn btn-block btn-success">Add Task</button>
 
 				<div id="task_form_wrapper">
-					<button id="btn_close_task_form" class="btn_close btn-danger">&times;</button>
+					<span id="btn_close_task_form" class="glyphicon glyphicon-remove pull-right"></span>
 
 					<div class="well">
 						<input id="task_nombre" class="form-control" type="text" placeholder="Nombre">
@@ -87,19 +87,37 @@
 
        	</div>
         <div class="col-lg-4">
-          	<div id="cron">
+          	<div id="cron" class="well">
+
+          		<div id="current-task-wrapper" class="well">
+          			<h4>
+          				<span id="current-task" class="label"></span>
+          			</h4>
+          			
+          		</div>
 	
 				<div id="time">
-					<span id="hours"></span>:
-					<span id="minutes"></span>:
-					<span id="seconds"></span>
+					<h1>
+						<span id="hours" class="label label-default"></span> :
+						<span id="minutes" class="label label-default"></span> :
+						<span id="seconds" class="label label-default"></span>
+					</h1>
 				</div>
-				<button id="btn_play">Play</button>
-				<button id="btn_pause">Pause</button>
-				<button id="btn_stop">Stop</button>
 
-				<textarea id="desc"></textarea>
-				<button id="btn_send">Enviar</button>
+				<div class="btn-group btn-group-lg">
+					<button id="btn_play" class="btn btn-group">
+						<span class="glyphicon glyphicon-play"></span>
+					</button>
+					<button id="btn_pause" class="btn btn-group">
+						<span class="glyphicon glyphicon-pause"></span>
+					</button>
+					<button id="btn_stop" class="btn btn-group">
+						<span class="glyphicon glyphicon-stop"></span>
+					</button>
+				</div>
+
+				<textarea id="desc" placeholder="Escribi una descripcion"></textarea>
+				<button id="btn_send" class="btn btn-success">Ok</button>
 				
 			</div>
         </div>

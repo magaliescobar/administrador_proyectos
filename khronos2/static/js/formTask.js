@@ -104,7 +104,11 @@ var formTask = {
 			})
 			.click(function() {
 				panel.$cron.fadeIn();
-				Cron.idTarea = taskAdded.id;
+				if (!Cron.isRunning) {
+					Cron.idTarea = taskAdded.id;
+					panel.$currentTask.text(taskAdded.nombre);
+				}
+				
 			})
 			.appendTo(formTask.$tasksContainer);
 

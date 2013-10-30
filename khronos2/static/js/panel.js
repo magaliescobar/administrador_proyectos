@@ -30,6 +30,9 @@ var panel = {
 		this.$tasks = null;
 		this.$tasks_wrapper.hide();
 
+		this.$currentTaskWrapper = $('#current-task-wrapper');
+		this.$currentTask = $('#current-task');
+
 		this.$cron = $('#cron');
 		this.$cron.hide();
 
@@ -52,7 +55,10 @@ var panel = {
 				.click(function() {
 					// display timer
 					panel.$cron.fadeIn();
-					Cron.idTarea = tareas[i].pk;
+					if (!Cron.isRunning) {
+						panel.$currentTask.text("Current Task: " + $(this).text());
+						Cron.idTarea = $(this).attr('id');
+					}
 				})
 				.appendTo(panel.$tasks_container);
 			}
@@ -61,19 +67,21 @@ var panel = {
 	},
 
 	projectClicked: function() {
-		panel.$cron.fadeOut();
-		panel.$tasks_wrapper.fadeIn();
-		
-		if (panel.$projectSelectedID !== $(this).attr("id")) {
-		
-			panel.$tasks_container.empty();
-			panel.$projectSelectedID = $(this).attr("id");
-			panel.$projectSelected = $(this);
-			var id_proyecto = $(this).attr("id");
-
-			formTask.idProyecto = id_proyecto; // para saber de que proyecto estoy hablando.
+		if (!Cron.isRunning) {
+			panel.$cron.fadeOut();
+			panel.$tasks_wrapper.fadeIn();
 			
-			panel.getTasks(id_proyecto);
-		}
+			if (panel.$projectSelectedID !== $(this).attr("id")) {
+			
+				panel.$tasks_container.empty();
+				panel.$projectSelectedID = $(this).attr("id");
+				panel.$projectSelected = $(this);
+				var id_proyecto = $(this).attr("id");
+
+				formTask.idProyecto = id_proyecto; // para saber de que proyecto estoy hablando.
+				
+				panel.getTasks(id_proyecto);
+			}
+		}		
 	}
 }

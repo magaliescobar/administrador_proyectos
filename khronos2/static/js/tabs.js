@@ -9,13 +9,15 @@ $(function() {
 	var tabsAPSProjects = new Tabs({
 		childrensType : 'div',
 		containerID : 'projects_container',
-		classActive: 'label-info APS-active-tab',
+		classActive : 'label-info APS-active-tab',
+		classOnMouseOver : 'APS-tab-hover-on'
 	});
 
 	var tabsAPSTasks = new Tabs({
 		childrensType : 'div',
 		containerID : 'tasks_container',
 		classActive: 'label-info APS-active-tab',
+		classOnMouseOver : 'APS-tab-hover-on'
 	});
 });
 

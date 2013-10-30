@@ -16,6 +16,8 @@ var Cron = {
 	init: function(config) {
 		$.extend(Cron.config, config);
 
+		this.isRunning = false;
+
 		this.hours = 0;
 		this.$hours = $('#hours');
 		this.$hours.text(Cron.config.hours);
@@ -57,6 +59,10 @@ var Cron = {
 
 		Cron.$btn_send.click(function() {
 
+			Cron.isRunning = false;
+
+			console.log(Cron.idTarea);
+
 			$.post("/save_interval/", {
 				hours: Cron.hours,
 				minutes: Cron.minutes,
@@ -93,6 +99,8 @@ var Cron = {
 	},
 
 	play: function() {
+
+		Cron.isRunning = true;
 
 		Cron.enableEle(Cron.$btn_stop);
 		

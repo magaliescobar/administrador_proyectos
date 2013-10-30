@@ -21,6 +21,15 @@ Tabs.prototype = {
 				that.$tabActive = $(this);
 			}
 		});
+
+		this.$tabs.on({
+		    mouseenter: function () {
+		        $(this).addClass(that.config.classOnMouseOver);
+		    },
+		    mouseleave: function () {
+		        $(this).removeClass(that.config.classOnMouseOver);
+		    }
+		}, this.config.childrensType);
 	}
 };
 
@@ -32,6 +41,7 @@ Tabs.prototype = {
 		childrensType : 'li', // type of elements to be clicked.
 		containerID : 'nav',
 		classActive: 'active',
+		classOnMouseOver : 'APS-tab-hover-on'
 	});
 
 	var tabsAPS = new Tabs({
