@@ -41,7 +41,9 @@ class Proyectos(models.Model):
 	descripcion = models.TextField()
 	fecha_inicio = models.DateField()
 	fecha_fin = models.DateField(null=True, blank=True)
-	tiempo_total = models.TimeField(null=True, blank=True)
+	tt_horas= models.IntegerField(null=True, blank=True, default=0)
+	tt_minutos= models.IntegerField(null=True, blank=True, default=0)
+	tt_segundos= models.IntegerField(null=True, blank=True, default=0)
 	estado = models.CharField(max_length=11, choices=estado_proyecto)
 
 	def __unicode__(self):
@@ -60,7 +62,9 @@ class Tareas(models.Model):
 	fecha_fin = models.DateField(null=True, blank=True)
 	tiempo_estimado = models.IntegerField() 
 	estado = models.CharField(max_length=11, choices=estado_tareas)
-	tiempo_total= models.TimeField(null=True, blank=True)
+	tt_horas= models.IntegerField(null=True, blank=True, default=0)
+	tt_minutos= models.IntegerField(null=True, blank=True, default=0)
+	tt_segundos= models.IntegerField(null=True, blank=True, default=0)
 	fecha_modificacion = models.DateField(null=True, blank=True)
 
 	def __unicode__(self):
@@ -72,15 +76,29 @@ class Tareas(models.Model):
 
 class Intervalos(models.Model):
 	fecha = models.DateField(auto_now_add=True)
-	tiempo = models.TimeField()
+	tt_horas= models.IntegerField(null=True, blank=True, default=0)
+	tt_minutos= models.IntegerField(null=True, blank=True, default=0)
+	tt_segundos= models.IntegerField(null=True, blank=True, default=0)
 	descripcion = models.TextField(null=True, blank=True)
 	tarea = models.ForeignKey(Tareas)
 
 	def __unicode__(self):
-		return "%s - %s - %s - %s" % (self.fecha, self.tiempo, self.descripcion, self.tarea)
+		return "%s - %s - %s" % (self.fecha, self.descripcion, self.tarea)
 
 	class Meta():
 		verbose_name_plural="Intervalos"
+
+	def save(self):
+		self.tarea.tt_horas += self.tt_horas
+		self.tarea.tt_minutos += self.tt_minutos
+		self.tarea.tt_segundos += self.tt_segundos
+		self.tarea.save()
+
+		self.tarea.proyecto.tt_horas += self.tt_horas
+		self.tarea.proyecto.tt_minutos += self.tt_minutos
+		self.tarea.proyecto.tt_segundos += self.tt_segundos
+		self.tarea.proyecto.save()
+		super(Intervalos, self).save()
 
 class EstadosTareas(models.Model):
 	tarea = models.ForeignKey(Tareas)

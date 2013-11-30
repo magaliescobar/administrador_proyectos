@@ -52,6 +52,13 @@ var panel = {
 					id: tareas[i].pk,
 					text: tareas[i].fields.nombre,
 				})
+				.append(
+					$('<span>', {
+						text: tareas[i].fields.tt_horas + ":" 
+						+ tareas[i].fields.tt_minutos + ":"
+						+ tareas[i].fields.tt_segundos
+					}).attr('class', 'badge pull-right')
+				)
 				.click(function() {
 					// display timer
 					panel.$cron.fadeIn();

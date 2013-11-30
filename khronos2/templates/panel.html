@@ -42,7 +42,10 @@
 				<div id="projects_container" class="well">
 
 					{% for p in proyectos %}
-						<div id="{{ p.id }}">{{ p.nombre|capfirst }}</div>
+						<div id="{{ p.id }}">
+							{{ p.nombre|capfirst }}
+							<span class="badge pull-right">{{ p.tt_horas }}:{{ p.tt_minutos }}:{{ p.tt_segundos}}</span>
+						</div>
 					{% empty %}
 						
 						<h4>

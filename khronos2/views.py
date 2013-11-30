@@ -30,17 +30,16 @@ def about(request):
 @csrf_exempt
 def save_interval(request):
 
-	hora = request.POST['hours']
-	minutos = request.POST['minutes']
-	segundos = request.POST['seconds']
+	hora = int(request.POST['hours'])
+	minutos = int(request.POST['minutes'])
+	segundos = int(request.POST['seconds'])
 	comentarios = request.POST['comments']
 	id_tarea = request.POST['idTarea']
 
 	tarea = get_object_or_404(Tareas, pk=id_tarea)
 
-	tiempo = str(hora) + ":" +str(minutos) + ":" + str(segundos)
-
-	nuevo_intervalo = Intervalos(tiempo=tiempo, descripcion=comentarios, tarea=tarea)
+	nuevo_intervalo = Intervalos(tt_horas=hora, tt_minutos=minutos, tt_segundos=segundos, 
+		descripcion=comentarios, tarea=tarea)
 	nuevo_intervalo.save()
 
 	return HttpResponse("Intervalo Guardado")

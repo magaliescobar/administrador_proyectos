@@ -1,6 +1,7 @@
 #projects_container > div, #tasks_container > div {
 	border-bottom: solid 1px white;
 	font-size: 17px;
+	text-align: left;
 }
 
 .APS-active-tab {
