@@ -1,136 +1,35 @@
 {% extends 'base.html' %}
 
 {% block js %}
-	<script src="{{ STATIC_URL }}js/Cronometro.js"></script>
-	<script src="{{ STATIC_URL }}js/panel.js"></script>
-	<script src="{{ STATIC_URL }}js/formProject.js"></script>
-	<script src="{{ STATIC_URL }}js/formTask.js"></script>
+	<script src="{{ STATIC_URL }}js/Cronometer.js"></script>
+	<script src="{{ STATIC_URL }}js/Projects.js"></script>
+	<script src="{{ STATIC_URL }}js/Tasks.js"></script>
 {% endblock %}
 
 {% block body %} 
 
-	<!-- Example row of columns -->
-    <div class="row">
-        <div class="col-lg-4">
-	        <div id="projects_wrapper">
-				<button id="btn_show_project_form" class="btn btn-block btn-success">Add Project</button>
-
-				<div id="project_form_wrapper">
-					<span id="btn_close_project_form" class="glyphicon glyphicon-remove pull-right"></span>
-					
-					<div class="well">
-						<input id="nombre" class="form-control" type="text" 
-						placeholder="Nombre">
-						
-						<textarea id="descripcion" class="form-control" rows="3" placeholder="Descripcion"></textarea>
-
-						<input id="fecha_inicio" class="form-control" type="date" placeholder="Fecha de Inicio">
-
-						<select id="estado" class="form-control">
-							<option value="no_iniciada">No iniciada</option>
-							<option value="en_proceso">En proceso</option>
-							<option value="suspendida">Suspendida</option>
-							<option value="finalizada">Finalizada</option>
-						</select>
-						
-						<input id="btn_add_project" class="btn btn-success btn-block" type="submit" value="Add">
-					</div>
-					
-
-				</div>
-
-				<div id="projects_container" class="well">
-
-					{% for p in proyectos %}
-						<div id="{{ p.id }}">
-							{{ p.nombre|capfirst }}
-							<span class="badge pull-right">{{ p.tt_horas }}:{{ p.tt_minutos }}:{{ p.tt_segundos}}</span>
-						</div>
-					{% empty %}
-						
-						<h4>
-							No hay proyectos.
-						</h4>
-						
-					{% endfor %}
-					
-				</div>
-			</div>
-        </div>
-        <div class="col-lg-4">
-          	<div id="tasks_wrapper">
-				<button id="btn_show_task_form" class="btn btn-block btn-success">Add Task</button>
-
-				<div id="task_form_wrapper">
-					<span id="btn_close_task_form" class="glyphicon glyphicon-remove pull-right"></span>
-
-					<div class="well">
-						<input id="task_nombre" class="form-control" type="text" placeholder="Nombre">
-						<textarea id="task_descripcion" class="form-control" rows="3" placeholder="Descripcion"></textarea>
-						<select id="task_responsable" class="form-control"></select>
-						<input id="task_fecha_inicio" class="form-control" type="date" placeholder="Fecha de Inicio">
-						<input id="task_tiempo_estimado" class="form-control" type="text" placeholder="Tiempo Estimado">
-						<select id="task_estado" class="form-control">
-							<option value="no_iniciada">No iniciada</option>
-							<option value="en_proceso">En proceso</option>
-							<option value="suspendida">Suspendida</option>
-							<option value="para_testear">Para Testear</option>
-							<option value="para_retome">Para Retome</option>
-							<option value="finalizada">Finalizada</option>
-						</select>
-						<input id="btn_add_task" class="btn btn-block btn-success" type="submit" value="Add">
-					</div>
-					
-				</div>
-
-				<div id="tasks_container" class="well">
-
-				</div>	
-			</div>
-
-       	</div>
-        <div class="col-lg-4">
-          	<div id="cron" class="well">
-
-          		<div id="current-task-wrapper" class="well">
-          			<h4>
-          				<span id="current-task" class="label"></span>
-          			</h4>
-          			
-          		</div>
-	
-				<div id="time">
-					<h1>
-						<span id="hours" class="label label-default"></span> :
-						<span id="minutes" class="label label-default"></span> :
-						<span id="seconds" class="label label-default"></span>
-					</h1>
-				</div>
-
-				<div class="btn-group btn-group-lg">
-					<button id="btn_play" class="btn btn-group">
-						<span class="glyphicon glyphicon-play"></span>
-					</button>
-					<button id="btn_pause" class="btn btn-group">
-						<span class="glyphicon glyphicon-pause"></span>
-					</button>
-					<button id="btn_stop" class="btn btn-group">
-						<span class="glyphicon glyphicon-stop"></span>
-					</button>
-				</div>
-
-				<textarea id="desc" placeholder="Escribi una descripcion"></textarea>
-				<button id="btn_send" class="btn btn-success">Ok</button>
-				
-			</div>
-        </div>
-    </div>
-
-    <!-- Site footer -->
-    <div class="footer">
-    	<p>© Company 2013</p>
-    </div>
+	<div class="row">
+		<div id="proyectos" class="col-md-4"></div>
 		
-    
+		<div id="tareas" class="col-md-4"></div>
+		
+		<div id="cronometro" class="col-md-4">
+				
+			<h5 id="current_task" class="well"></h5>
+			
+			<h1>
+				<span id="hours" class="label">0</span> :
+				<span id="minutes" class="label">0</span> :
+				<span id="seconds" class="label">0</span>
+			</h1>
+
+			<div class="btn-group">
+				<button id="btn_play_id" class="btn glyphicon glyphicon-play"></button>
+				<button id="btn_pause_id" class="btn glyphicon glyphicon-pause"></button>
+				<button id="btn_stop_id" class="btn glyphicon glyphicon-stop"></button>	
+			</div>
+		</div>
+	</div>
+	
 
 {% endblock %}

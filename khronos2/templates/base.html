@@ -10,7 +10,7 @@
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 	<script src="{{ STATIC_URL }}js/Tabs.js"></script>
-	<script src="{{ STATIC_URL }}js/tabs.js"></script>
+	<script src="{{ STATIC_URL }}js/panel.js"></script>
 	
 	
 	{% block css %} {% endblock %}
@@ -42,6 +42,11 @@
 	    <div class="page">
 			{% block body %} {% endblock %}
 		</div>
+		
+		<!-- Site footer -->
+	    <div class="footer">
+	    	<p>© Laggaa 2013</p>
+	    </div>
 	</div>
 </body>
 </html>

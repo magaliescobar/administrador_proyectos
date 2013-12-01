@@ -1,0 +1,12 @@
+<h5 class="well">Tareas</h5>
+
+<table class="table table-hover">
+	{% for t in tareas %}
+		<tr id="task-{{ t.id }}">
+			<td>{{ t.nombre }}</td>
+			<td>{{ t.tt_horas}}:{{ t.tt_minutos }}:{{ t.tt_segundos }}</td>
+		</tr>
+	{% empty %}
+		<div>No hay tareas cargadas.</div>
+	{% endfor %}
+</table>

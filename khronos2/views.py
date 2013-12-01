@@ -23,6 +23,23 @@ def about(request):
 		}
 	)
 
+def proyectos(request):
+	proyectos = Proyectos.objects.all()
+	return render(request, 'proyectos.html',
+		{
+			"proyectos" : proyectos,
+		}
+	)
+
+def tareas(request, id_proyecto):
+	proyecto = get_object_or_404(Proyectos, pk=id_proyecto)
+	tareas = proyecto.tareas_set.all() 
+	return render(request, 'tareas.html',
+		{
+			"tareas" : tareas,
+		}
+	)
+	
 # end vistas posta
 
 # json 
@@ -34,7 +51,7 @@ def save_interval(request):
 	minutos = int(request.POST['minutes'])
 	segundos = int(request.POST['seconds'])
 	comentarios = request.POST['comments']
-	id_tarea = request.POST['idTarea']
+	id_tarea = request.POST['idTask']
 
 	tarea = get_object_or_404(Tareas, pk=id_tarea)
 
@@ -97,16 +114,6 @@ def save_tarea(request):
 		"nombre": nombre
 	}))
 
-def proyectos(request):
-	proyectos = serializers.serialize("json" , Proyectos.objects.all())
-	return HttpResponse(proyectos)
-
-def tareas(request, id_proyecto):
-	proyecto = get_object_or_404(Proyectos, pk=id_proyecto)
-	t = proyecto.tareas_set.all() 
-
-	tareas = serializers.serialize("json" ,t) 
-	return HttpResponse(tareas)
 
 def recursos_humanos(request):
 	recursos_humanos = serializers.serialize("json" , RecursosHumanos.objects.all())

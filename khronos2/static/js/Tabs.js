@@ -30,6 +30,14 @@ Tabs.prototype = {
 		        $(this).removeClass(that.config.classOnMouseOver);
 		    }
 		}, this.config.childrensType);
+	},
+
+	activeTab: function($tab) {
+		if (this.$tabActive[0] != $tab){
+			$tab.addClass(this.config.classActive);
+			this.$tabActive.removeClass(this.config.classActive);
+			this.$tabActive = $tab;
+		}
 	}
 };
 
