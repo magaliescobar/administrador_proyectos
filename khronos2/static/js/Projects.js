@@ -2,7 +2,7 @@ function Projects(config) {
 	this.config = config;
 
 	this.$container = $(this.config.containerID);
-	this.$project_selected = null;
+	this.$projectSelected = null;
 
 	this.loadProjects();
 	this.attachEvents();
@@ -21,9 +21,9 @@ Projects.prototype = {
 
 		this.$container.on("click", "tr", function() {
 			var $project = $(this);
-			if (that.$project_selected == null || that.$project_selected[0] != $project[0]) {
+			if (that.$projectSelected == null || that.$projectSelected[0] != $project[0]) {
 				panel.cronometer.hide();
-				that.$project_selected = $project;
+				that.$projectSelected = $project;
 				panel.tasks.loadTasks($project.attr('id')); //panel is a global variable
 			}
 		});

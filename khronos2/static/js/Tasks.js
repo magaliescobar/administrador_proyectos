@@ -2,25 +2,22 @@ function Tasks(config) {
 	this.config = config;
 
 	this.$container = $(this.config.containerID);
-	this.$task_selected = null;
-	this.$current_task = $('#current_task');
+	this.$taskSelected = null;
+	this.$currentTask = $('#current_task');
 
 	this.attachEvents();
 }
 
 Tasks.prototype = {
-	loadTasks: function(projectID, $project_selected, $task_selected) {
-		var id = projectID.split('-')[1];
+	loadTasks: function(projectID, taskID) {
+		var pID = projectID.split('-')[1];
 
-		if ($project_selected && $task_selected) {
-			var $ps = $project_selected,
-				$ts = $task_selected;
-		}
-		this.$container.load('/tareas/' + id, function() {
+		this.$container.load('/tareas/' + pID, function() {
 
-			if ($ps && $ts) {
-				panel.tabsAPSProjects.activeTab($('#' + $ps.attr('id')));
-				panel.tabsAPSTasks.activeTab($('#' + $ts.attr('id')));
+			if (projectID && taskID) {
+				
+				panel.tabsAPSProjects.activeTab($('#' + projectID));
+				panel.tabsAPSTasks.activeTab($('#' + taskID));
 			} 
 		});
 	},
@@ -30,9 +27,9 @@ Tasks.prototype = {
 
 		this.$container.on("click", "tr", function() {
 			var $task = $(this);
-			if (that.$task_selected == null || that.$task_selected[0] != $task[0]) {
-				that.$task_selected = $(this);
-				that.changeCurrentTask(that.$task_selected);
+			if (that.$taskSelected == null || that.$taskSelected[0] != $task[0]) {
+				that.$taskSelected = $(this);
+				that.changeCurrentTask(that.$taskSelected);
 				panel.cronometer.idTask = $task.attr("id").split('-')[1];
 				panel.cronometer.show();
 			}
@@ -40,7 +37,7 @@ Tasks.prototype = {
 	},
 
 	changeCurrentTask: function($task) {
-		this.$current_task.empty();
-		this.$current_task.text('Current task: ' + $task.children('td').first().text());
+		this.$currentTask.empty();
+		this.$currentTask.text('Current task: ' + $task.children('td').first().text());
 	}
 }

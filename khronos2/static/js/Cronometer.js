@@ -69,7 +69,6 @@ Cronometer.prototype = {
 				clearInterval(that.clock);
 				that.saveInterval();
 			}
-			// deberia hacer saveInterval();
 		});
 	},
 
@@ -112,12 +111,9 @@ Cronometer.prototype = {
 
 		        panel.projects.loadProjects();
 		        panel.tasks.loadTasks(
-		        	panel.projects.$project_selected.attr('id'),
-		        	panel.projects.$project_selected, 
-		        	panel.tasks.$task_selected
+		        	panel.projects.$projectSelected.attr('id'), 
+		        	panel.tasks.$taskSelected.attr('id')
 		        );
-
-		        // panel.tabsAPSProjects.activeTab(panel.projects.$project_selected);
 		    },
 		    error: function (jqXHR, textStatus, errorThrown)
 		    {
