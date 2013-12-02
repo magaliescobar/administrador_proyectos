@@ -2,6 +2,8 @@ function Tasks(config) {
 	this.config = config;
 
 	this.$container = $(this.config.containerID);
+	this.$invervalsContainer = $(this.config.intervalsContainerID);
+
 	this.$taskSelected = null;
 	this.$currentTask = $('#current_task');
 
@@ -22,15 +24,22 @@ Tasks.prototype = {
 		});
 	},
 
+	loadIntervals: function(taskID) {
+		this.$invervalsContainer.load('/intervalos/' + taskID);
+	},
+
 	attachEvents: function() {
 		var that = this;
 
 		this.$container.on("click", "tr", function() {
 			var $task = $(this);
 			if (that.$taskSelected == null || that.$taskSelected[0] != $task[0]) {
+				var taskID = $task.attr("id").split('-')[1];
+				
 				that.$taskSelected = $(this);
 				that.changeCurrentTask(that.$taskSelected);
-				panel.cronometer.idTask = $task.attr("id").split('-')[1];
+				panel.cronometer.idTask = taskID;
+				that.loadIntervals(taskID);
 				panel.cronometer.show();
 			}
 		});

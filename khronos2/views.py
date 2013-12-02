@@ -39,6 +39,15 @@ def tareas(request, id_proyecto):
 			"tareas" : tareas,
 		}
 	)
+
+def intervalos(request, id_tarea):
+	tarea = get_object_or_404(Tareas, pk=id_tarea)
+	intervalos = tarea.intervalos_set.all()
+	return render(request, 'intervalos.html',
+		{
+			"intervalos" : intervalos,
+		}
+	)
 	
 # end vistas posta
 

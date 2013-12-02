@@ -1,0 +1,14 @@
+<h5 class="well">Intervalos</h5>
+
+<table class="table table-hover">
+	<tbody>
+		{% for i in intervalos %}
+			<tr>
+				<td>{{ forloop.counter }}</td>
+				<td>{{ i.tt_horas}}:{{ i.tt_minutos }}:{{ i.tt_segundos }}</td>
+			</tr>
+		{% empty %}
+			<div>No hay intervalos cargados.</div>
+		{% endfor %}
+	</tbody>
+</table>

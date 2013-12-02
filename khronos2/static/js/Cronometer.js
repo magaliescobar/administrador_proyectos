@@ -114,6 +114,7 @@ Cronometer.prototype = {
 		        	panel.projects.$projectSelected.attr('id'), 
 		        	panel.tasks.$taskSelected.attr('id')
 		        );
+		        panel.tasks.loadIntervals(panel.cronometer.idTask);
 		    },
 		    error: function (jqXHR, textStatus, errorThrown)
 		    {

@@ -10,5 +10,6 @@ urlpatterns = patterns('khronos2.views',
 
     url(r'^proyectos/$','proyectos', name='proyectos'),
     url(r'^tareas/(?P<id_proyecto>\d+)$', 'tareas', name='tareas'),
+    url(r'^intervalos/(?P<id_tarea>\d+)$', 'intervalos', name='intervalos'),
     url(r'^recursos_humanos/$', 'recursos_humanos', name='recursos_humanos'),
 )

@@ -91,12 +91,25 @@ class Intervalos(models.Model):
 	def save(self):
 		self.tarea.tt_horas += self.tt_horas
 		self.tarea.tt_minutos += self.tt_minutos
+		if self.tarea.tt_minutos > 59:
+			self.tarea.tt_horas += 1
+			self.tarea.tt_minutos = self.tarea.tt_minutos % 60
 		self.tarea.tt_segundos += self.tt_segundos
+		if self.tarea.tt_segundos > 59:
+			self.tarea.tt_minutos += 1
+			self.tarea.tt_segundos = self.tarea.tt_segundos % 60
 		self.tarea.save()
 
 		self.tarea.proyecto.tt_horas += self.tt_horas
+		
 		self.tarea.proyecto.tt_minutos += self.tt_minutos
+		if self.tarea.proyecto.tt_minutos > 59:
+			self.tarea.proyecto.tt_horas += 1
+			self.tarea.proyecto.tt_minutos = self.tarea.proyecto.tt_minutos % 60
 		self.tarea.proyecto.tt_segundos += self.tt_segundos
+		if self.tarea.proyecto.tt_segundos > 59:
+			self.tarea.proyecto.tt_minutos += 1
+			self.tarea.proyecto.tt_segundos = self.tarea.proyecto.tt_segundos % 60
 		self.tarea.proyecto.save()
 		super(Intervalos, self).save()
 

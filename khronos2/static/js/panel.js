@@ -46,6 +46,7 @@ Panel.prototype = {
 
 		this.tasks = new Tasks({
 			containerID : '#tareas',
+			intervalsContainerID : '#intervalos',
 		});
 	},
 }

@@ -17,17 +17,19 @@
 				
 			<h5 id="current_task" class="well"></h5>
 			
-			<h1>
+			<h1 class="well">
 				<span id="hours" class="label">0</span> :
 				<span id="minutes" class="label">0</span> :
 				<span id="seconds" class="label">0</span>
+
+				<div class="btn-group-vertical">
+					<span id="btn_play_id" class="btn btn-primary">Play</span>
+					<span id="btn_pause_id" class="btn btn-primary">Pause</span>
+					<span id="btn_stop_id" class="btn btn-primary">Stop</span>	
+				</div>
 			</h1>
 
-			<div class="btn-group">
-				<button id="btn_play_id" class="btn glyphicon glyphicon-play"></button>
-				<button id="btn_pause_id" class="btn glyphicon glyphicon-pause"></button>
-				<button id="btn_stop_id" class="btn glyphicon glyphicon-stop"></button>	
-			</div>
+			<div id="intervalos"></div>		
 		</div>
 	</div>
 	
